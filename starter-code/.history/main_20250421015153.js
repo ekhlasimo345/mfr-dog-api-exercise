@@ -5,27 +5,32 @@
 // iterate over breedNames using forEach and this way generating a card for each breedName
 // each breedName should then be the card-title of the card and the alt of the image (you will get the images in part 2 of the exercise)
 // image src should be empty for now
-
+console.log(3-2);
 function getDogs() {
-  fetch("https://dog.ceo/api/breeds/list/all")
-   .then(response=>response.json())
-    .then(data=>{
-    const breedNames = Object.keys(data.message);
-    const promises= breedNames.map(breed =>{return fetch (`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then(response=>response.json())
-    .then(data=>{const breedNameImages= data.message 
-      return  ` <div class="card" style="max-width: 400px">
-      <img class="card-img-top" src=${breedNameImages} alt="${breed}" height="300" style="object-fit: cover; object-position: center;">
-      <div class="card-body">
-       <h5 class="card-title">${breed}</h5>
-      </div>
-  </div> `
-      })
-  });  
-Promise.all(promises)
-.then(cards=>{
+
+
+
+  const breedNames = [];
+  const response = fetch("https://dog.ceo/api/breeds/image/random")
+   
+
+  console.log(Object.keys(
+  response )
+  );
   const container = document.querySelector('.container-grid');
-  container.innerHTML = cards.join(' ')
-});
-  })};
+
+  container.innerHTML += `
+    <div class="card" style="max-width: 300px">
+        <img class="card-img-top" src="" alt="-BREED NAME GOES HERE-" height="300px" style="object-fit: cover; object-position: center;">
+        <div class="card-body">
+         <h5 class="card-title">-BREED NAME GOES HERE-</h5>
+        </div>
+    </div>`
+
+    fetch({
+      "message": "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191126134713895_COVER.jpg",
+      "status": "success"
+    });
+}
+
 getDogs();
